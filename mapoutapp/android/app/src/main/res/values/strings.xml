@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MapOut</string>
+    <string name="facebook_app_id">3189501141266162</string>
+    <string name="fb_login_protocol_scheme">fb3189501141266162</string>
+    <string name="facebook_client_token">1451737de8c00bbd6cd7bd1140a66cfb</string>
+</resources>

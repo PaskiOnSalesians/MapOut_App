@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "561345282616",
+    "firebase_url": "https://mapoutapp-a3fac-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "mapoutapp-a3fac",
+    "storage_bucket": "mapoutapp-a3fac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:561345282616:android:ec588c3de11b88a6afdccd",
+        "android_client_info": {
+          "package_name": "com.example.mapoutapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "561345282616-u8cpc48erk6su0mahu2npls5rc2r351c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mapoutapp",
+            "certificate_hash": "961b370858fecade08f4c01b71c48720d88e0939"
+          }
+        },
+        {
+          "client_id": "561345282616-9adejrtp9iegpeg578ot94fsqvpr19k5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAy9IKpb_YsvwQK90vGfhgkOA6MEiLtd5Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "561345282616-9adejrtp9iegpeg578ot94fsqvpr19k5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "561345282616-unm19kjh7n17a3dvdthbml18j43ql523.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mapout.mapoutApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
