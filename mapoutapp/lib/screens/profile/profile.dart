@@ -1,6 +1,8 @@
 // ignore_for_file: camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:mapoutapp/screens/settings/settings.dart';
+import 'package:mapoutapp/widgets/others/separator_section.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -209,24 +211,6 @@ class IntrerestsSection extends StatelessWidget {
   }
 }
 
-class SeparatorSection extends StatelessWidget {
-  const SeparatorSection({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 2,
-        color: const Color.fromARGB(113, 198, 198, 198)
-      ),
-    );
-  }
-}
-
 class SettingsButton extends StatelessWidget {
   const SettingsButton({
     Key? key,
@@ -237,7 +221,9 @@ class SettingsButton extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        IconButton(onPressed: (){}, icon: const Icon(Icons.settings, color: Color(0xFFEB7C25),))
+        IconButton(onPressed: (){
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SettingsScreen()));
+        }, icon: const Icon(Icons.settings, color: Color(0xFFEB7C25),))
       ]
     );
   }
@@ -294,11 +280,11 @@ class ActionProfileButtons extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(
-          width: 180,
+          width: 170,
           child: Column(
             children: [
               Container(
-                width: 180,
+                width: 170,
                 decoration: BoxDecoration(
                   color: const Color(0xFF50C3CB),
                   border: Border.all(color: Colors.white),
@@ -323,11 +309,11 @@ class ActionProfileButtons extends StatelessWidget {
         ),
         const SizedBox(width: 10,),
         SizedBox(
-          width: 180,
+          width: 170,
           child: Column(
             children: [
               Container(
-                width: 180,
+                width: 170,
                 decoration: BoxDecoration(
                   color: const Color(0xFFEB7C25),
                   border: Border.all(color: Colors.white),

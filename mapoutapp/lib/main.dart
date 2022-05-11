@@ -7,14 +7,12 @@ import 'package:mapoutapp/screens/profile/profile.dart';
 /*
  *    @Author: Pasqual Peñalver aka DevPaski
  *    @Description: MapOut App
- *    @Details: In this development there were more members
- *              none of them actually helped with the app. 
+ *    @Details: In this development there were more members.
  *              Furthermore one of the 2 developers made 
- *              all the work (DevPaski) including the designs
- *              (mockups and prototype on figma).
+ *              all the work (DevPaski).
  *              
- *              The logo is the only creation not made by
- *              DevPaski.
+ *              The logo and some designs are the only creation 
+ *              not made by DevPaski.
  */
 
 void main() async{
