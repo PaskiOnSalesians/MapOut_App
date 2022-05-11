@@ -43,7 +43,6 @@ dependencies:
   flutter_facebook_auth: ^4.3.3
   twitter_login: ^4.2.3
   google_sign_in: ^5.3.1
-  floating_action_row: ^0.1.0
 
 dev_dependencies:
   flutter_test:

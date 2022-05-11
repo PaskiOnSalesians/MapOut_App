@@ -1,11 +1,9 @@
 // ignore_for_file: camel_case_types
-// @dart=2.9
 
 import 'package:flutter/material.dart';
-import 'package:mapoutapp/widgets/menu/menu.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key key}) : super(key: key);
+  const ProfileScreen({Key? key}) : super(key: key);
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -29,9 +27,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ActionProfileButtons(),
             SizedBox(height: 20,),
             SeparatorSection(),
-            SizedBox(
-              height: 10,
-            ),
+            SizedBox(height: 10,),
           
             // Under Section
             Column_Interests_ShareFriends(),
@@ -41,7 +37,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             SizedBox(height: 10,),
             BuildVersion(),
 
-            FloatingMenu()
+
+            //FloatingMenu()
           ],
         ),
       )
@@ -51,7 +48,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
 class BuildVersion extends StatelessWidget {
   const BuildVersion({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -70,7 +67,7 @@ class BuildVersion extends StatelessWidget {
 
 class Column_Interests_ShareFriends extends StatelessWidget {
   const Column_Interests_ShareFriends({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -120,7 +117,6 @@ class Column_Interests_ShareFriends extends StatelessWidget {
                 ),
               ),
             ),
-            
           )
         ],
       ),
@@ -130,7 +126,7 @@ class Column_Interests_ShareFriends extends StatelessWidget {
 
 class InterestText extends StatelessWidget {
   const InterestText({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -151,7 +147,7 @@ class InterestText extends StatelessWidget {
 
 class IntrerestsSection extends StatelessWidget {
   const IntrerestsSection({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -215,7 +211,7 @@ class IntrerestsSection extends StatelessWidget {
 
 class SeparatorSection extends StatelessWidget {
   const SeparatorSection({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -233,7 +229,7 @@ class SeparatorSection extends StatelessWidget {
 
 class SettingsButton extends StatelessWidget {
   const SettingsButton({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -249,7 +245,7 @@ class SettingsButton extends StatelessWidget {
 
 class FullNameDisplay extends StatelessWidget {
   const FullNameDisplay({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -270,7 +266,7 @@ class FullNameDisplay extends StatelessWidget {
 
 class ProfilePhoto extends StatelessWidget {
   const ProfilePhoto({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -289,7 +285,7 @@ class ProfilePhoto extends StatelessWidget {
 
 class ActionProfileButtons extends StatelessWidget {
   const ActionProfileButtons({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
