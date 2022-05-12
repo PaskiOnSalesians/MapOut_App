@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mapoutapp/screens/profile/profile.dart';
+import 'package:mapoutapp/screens/profile/profile_definitivo.dart';
 import 'package:mapoutapp/screens/settings/subsettings/help.dart';
 import 'package:mapoutapp/screens/settings/subsettings/notifications.dart';
 import 'package:mapoutapp/screens/settings/subsettings/security.dart';
@@ -21,7 +21,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ProfileScreen()));
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ProfileFinalScreen()));
           },
           icon: const Icon(
             Icons.arrow_back,

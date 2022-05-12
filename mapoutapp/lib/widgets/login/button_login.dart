@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:mapoutapp/screens/search/search.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({
@@ -14,7 +15,7 @@ class LoginButton extends StatelessWidget {
       height: 50,
       child: TextButton(
         onPressed: (){
-          
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => SearchScreen()));
         },
         style: ButtonStyle(
           backgroundColor:  MaterialStateProperty.all(Color(0xFFEB7C25)),

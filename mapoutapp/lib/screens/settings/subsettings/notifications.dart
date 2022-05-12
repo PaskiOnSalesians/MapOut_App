@@ -74,7 +74,7 @@ class _NotificactionsSettingsState extends State<NotificactionsSettings> {
                       const SizedBox(width: 100,),
                       Switch(
                         value: isSwitched,
-                        onChanged: toggleSwitch
+                        onChanged: toggleSwitch,
                       )
                     ],
                   ),

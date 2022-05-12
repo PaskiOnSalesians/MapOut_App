@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mapoutapp/screens/main_screen.dart';
+import 'package:mapoutapp/screens/search/search.dart';
 import 'package:mapoutapp/services/res_google_signin_model.dart';
 import 'package:mapoutapp/utils/log_utils.dart';
 
@@ -14,11 +15,11 @@ class RegisterGoogle extends StatelessWidget {
 
   void _googleSignInProcess(BuildContext context) async {
     try{
-      GoogleSignIn _googleSignIn = GoogleSignIn();
-      GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      GoogleSignIn googleSignIn = GoogleSignIn();
+      GoogleSignInAccount? googleUser = await googleSignIn.signIn();
       GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
       String? token = googleAuth?.idToken;
-      ResGoogleSignInModel _socialGoogleUser = ResGoogleSignInModel(
+      ResGoogleSignInModel socialGoogleUser = ResGoogleSignInModel(
         displayName: googleUser?.displayName,
         email: googleUser?.email,
         photoUrl: googleUser?.photoUrl,
@@ -28,8 +29,8 @@ class RegisterGoogle extends StatelessWidget {
         msg: googleUser!.email,
         backgroundColor: Colors.blue,
         textColor: Colors.white);
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => MainScreen()));
-      LogUtils.showLog("${_socialGoogleUser.toJson()}");
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => SearchScreen()));
+      LogUtils.showLog("${socialGoogleUser.toJson()}");
     } on Exception catch (e){
       LogUtils.showLog("$e");
     }

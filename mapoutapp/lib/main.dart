@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mapoutapp/screens/profile/profile_definitivo.dart';
+import 'package:mapoutapp/screens/login-register/login.dart';
 
 
 /*
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         textTheme: GoogleFonts.nunitoSansTextTheme(),
       ),
-      home: const ProfileFinalScreen(),
+      home: const Login(),
     );
   }
 }

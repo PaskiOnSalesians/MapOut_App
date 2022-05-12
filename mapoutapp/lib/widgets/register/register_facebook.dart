@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:mapoutapp/screens/main_screen.dart';
+import 'package:mapoutapp/screens/search/search.dart';
 import 'package:mapoutapp/utils/constants/key_constants.dart';
 import 'package:mapoutapp/utils/log_utils.dart';
 import 'package:mapoutapp/utils/widgets/progress_dialog.dart';
@@ -30,7 +30,7 @@ class RegisterFacebook extends StatelessWidget {
             textColor: Colors.white);
         LogUtils.showLog(accessToken.userId);
         LogUtils.showLog("$userData");
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const MainScreen()));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SearchScreen()));
       } else {
         ProgressDialogUtils.dismissProgressDialog();
       }
