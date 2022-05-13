@@ -170,15 +170,16 @@ class _SearchScreenState extends State<SearchScreen> {
                             border: Border.all(color: Colors.white),
                             borderRadius: const BorderRadius.all(Radius.circular(50)),
                           ),
-                          child: TextButton(
-                            onPressed: (){},
-                            child: const Text(
-                              'BUSCAR AHORA',
+                          child: ListTile(
+                            title: const Text(
+                              'BUSCAR',
                               style: TextStyle(
                                 color: Colors.white,
-                                fontWeight: FontWeight.bold
+                                fontWeight: FontWeight.bold,
                               ),
-                            )
+                              textAlign: TextAlign.center,
+                            ),
+                            onTap: (){},
                           )
                         )
                       ],
@@ -193,15 +194,16 @@ class _SearchScreenState extends State<SearchScreen> {
                             border: Border.all(color: Colors.grey),
                             borderRadius: const BorderRadius.all(Radius.circular(50)),
                           ),
-                          child: TextButton(
-                            onPressed: (){},
-                            child: const Text(
+                          child: ListTile(
+                            title:  const Text(
                               'CREAR PLAN',
                               style: TextStyle(
                                 color: Colors.grey,
                                 fontWeight: FontWeight.bold
                               ),
-                            )
+                              textAlign: TextAlign.center,
+                            ),
+                            onTap: () {},
                           )
                         )
                       ],
@@ -210,7 +212,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 )
               ],
             ),
-            SizedBox(height: MediaQuery.of(context).size.height / 5,),
+            SizedBox(height: MediaQuery.of(context).size.height / 7.2,),
             const Menu()
           ],
         )

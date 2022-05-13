@@ -24,7 +24,7 @@ class _ProfileFinalScreenState extends State<ProfileFinalScreen> {
               child: Column(
                 children: const [
                   // Information profile
-                  SizedBox(height: 20,),
+                  SizedBox(height: 40,),
                   SettingsButton(),
                   ProfilePhoto(),
                   SizedBox(height: 20,),
@@ -83,7 +83,9 @@ class AddNewAction extends StatelessWidget {
             ],
           )
         ),
-        onTap: (){},
+        onTap: (){
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SearchScreen()));
+        },
       )
     );
   }
@@ -181,9 +183,28 @@ class SettingsButton extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        IconButton(onPressed: (){
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SettingsScreen()));
-        }, icon: const Icon(Icons.settings, color: Color(0xFFEB7C25),))
+        Container(
+          width: 50,
+          height: 50,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border.all(color: Colors.white),
+            borderRadius: const BorderRadius.all(Radius.circular(50)),
+            boxShadow: const [
+              BoxShadow(
+                //color: Colors.grey.withOpacity(0.5),
+                color: Color.fromARGB(113, 130, 130, 130),
+                spreadRadius: 1,
+                blurRadius: 10,
+                offset: Offset(0, 3),
+              )
+            ]
+          ),
+          child: IconButton(onPressed: (){
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SettingsScreen()));
+          }, icon: const Icon(Icons.settings, color: Color(0xFFEB7C25),)),
+        ),
+        const SizedBox(width: 20,)
       ]
     );
   }
@@ -233,8 +254,8 @@ class ProfilePhoto extends StatelessWidget {
             ),
             const SizedBox(height: 20,),
             Container(
-              width: 120,
-              height: 32,
+              width: 150,
+              height: 50,
               decoration: BoxDecoration(
                 color: Colors.white,
                 border: Border.all(color: Colors.white),
@@ -249,23 +270,27 @@ class ProfilePhoto extends StatelessWidget {
                   )
                 ]
               ),
-              child: TextButton(
-                onPressed: (){}, 
-                child: const Text(
+              child: ListTile(
+                title: const Text(
                   'Completa tu perfil',
                   style: TextStyle(
                     color: Colors.grey,
                     fontWeight: FontWeight.bold,
                     fontSize: 12
                   ),
-                )
-              ),
+                  textAlign: TextAlign.center,
+                ),
+                onTap: () {
+                  
+                },
+              )
             )
           ],
         ),
         const SizedBox(width: 50,),
         const CircleAvatar(
           radius: 60,
+          backgroundColor: Color(0xFF50C3CB),
           //backgroundImage: Image(image: ''),
         )
       ],
