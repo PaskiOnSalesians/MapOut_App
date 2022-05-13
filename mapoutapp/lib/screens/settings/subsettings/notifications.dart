@@ -71,11 +71,18 @@ class _NotificactionsSettingsState extends State<NotificactionsSettings> {
                           fontSize: 18
                         ),
                       ),
-                      const SizedBox(width: 100,),
-                      Switch(
-                        value: isSwitched,
-                        onChanged: toggleSwitch,
-                      )
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 1.8,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Switch(
+                              value: isSwitched,
+                              onChanged: toggleSwitch,
+                            )
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),

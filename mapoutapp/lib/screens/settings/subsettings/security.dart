@@ -71,11 +71,18 @@ class _SecurityScreenState extends State<SecurityScreen> {
                           fontSize: 18
                         ),
                       ),
-                      const SizedBox(width: 150,),
-                      Switch(
-                        value: isSwitched,
-                        onChanged: toggleSwitch
-                      )
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 1.55,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Switch(
+                              value: isSwitched,
+                              onChanged: toggleSwitch,
+                            )
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),

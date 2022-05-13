@@ -22,19 +22,26 @@ class _ProfileFinalScreenState extends State<ProfileFinalScreen> {
             SizedBox(
               height: MediaQuery.of(context).size.height/ 1.1,
               child: Column(
-                children: const [
+                children:  [
                   // Information profile
-                  SizedBox(height: 40,),
-                  SettingsButton(),
-                  ProfilePhoto(),
-                  SizedBox(height: 20,),
-                  ActionProfileButtons(),
-                  SizedBox(height: 20,),
-                  SeparatorMain(),
-                  SizedBox(height: 10,),
-                  InterestText(),
-                  SizedBox(height: 20,),
-                  AddNewAction()
+                  const SizedBox(height: 40,),
+                  const SettingsButton(),
+                  const ProfilePhoto(),
+                  const SizedBox(height: 20,),
+                  const ActionProfileButtons(),
+                  const SizedBox(height: 20,),
+                  const SeparatorMain(),
+                  const SizedBox(height: 10,),
+                  const InterestText(),
+                  const SizedBox(height: 20,),
+                  Column(
+                    children: [
+                      Container(
+
+                      )
+                    ],
+                  ),
+                  const AddNewAction()
 
                 ],
               ),
@@ -255,7 +262,7 @@ class ProfilePhoto extends StatelessWidget {
             const SizedBox(height: 20,),
             Container(
               width: 150,
-              height: 50,
+              height: 55,
               decoration: BoxDecoration(
                 color: Colors.white,
                 border: Border.all(color: Colors.white),
@@ -276,7 +283,7 @@ class ProfilePhoto extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.grey,
                     fontWeight: FontWeight.bold,
-                    fontSize: 12
+                    fontSize: 14
                   ),
                   textAlign: TextAlign.center,
                 ),
