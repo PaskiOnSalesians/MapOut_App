@@ -1,48 +1,54 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, use_build_context_synchronously
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:mapoutapp/screens/main_screen.dart';
 import 'package:mapoutapp/screens/search/search.dart';
 import 'package:mapoutapp/services/res_google_signin_model.dart';
-import 'package:mapoutapp/utils/log_utils.dart';
+import 'package:mapoutapp/utils/constants/key_constants.dart';
+import 'package:mapoutapp/utils/constants/login_type.dart';
 
-class RegisterGoogle extends StatelessWidget {
-  const RegisterGoogle({
-    Key? key,
-  }) : super(key: key);
+class RegisterGoogle extends StatefulWidget {
+  const RegisterGoogle({super.key});
 
-  void _googleSignInProcess(BuildContext context) async {
-    try{
-      GoogleSignIn googleSignIn = GoogleSignIn();
-      GoogleSignInAccount? googleUser = await googleSignIn.signIn();
-      GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
-      String? token = googleAuth?.idToken;
-      ResGoogleSignInModel socialGoogleUser = ResGoogleSignInModel(
-        displayName: googleUser?.displayName,
-        email: googleUser?.email,
-        photoUrl: googleUser?.photoUrl,
-        id: googleUser?.id,
-        token: token);
-      Fluttertoast.showToast(
-        msg: googleUser!.email,
-        backgroundColor: Colors.blue,
-        textColor: Colors.white);
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => SearchScreen()));
-      LogUtils.showLog("${socialGoogleUser.toJson()}");
-    } on Exception catch (e){
-      LogUtils.showLog("$e");
-    }
+  @override
+  State<RegisterGoogle> createState() => _RegisterGoogleState();
+}
+
+class _RegisterGoogleState extends State<RegisterGoogle> {
+  //late String accessType;
+
+  late GoogleSignInAccount? googleUser;
+  late GoogleSignInAuthentication googleAuth;
+  late ResGoogleSignInModel googleUserModel;
+
+  Future<UserCredential> signInWithGoogle() async{
+    LoginType.accessType = "Google";
+
+    googleUser = await GoogleSignIn().signIn();
+    googleAuth = await googleUser!.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken
+    );
+
+    return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
   @override
   Widget build(BuildContext context) {
+
     return SizedBox(
       width: MediaQuery.of(context).size.width - 125,
       child: TextButton(
-        onPressed: (){
-          _googleSignInProcess(context);
+        onPressed: () async{
+          await signInWithGoogle();
+
+          KeyConstants.googleDisplayName = googleUser!.displayName!;
+          KeyConstants.googlePhotoUrl = googleUser!.photoUrl!;
+
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SearchScreen()));
         },
         style: ButtonStyle(
           backgroundColor:  MaterialStateProperty.all(Color(0xFFF0F0F0)),

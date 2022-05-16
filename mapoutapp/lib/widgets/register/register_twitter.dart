@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, deprecated_member_use
+// ignore_for_file: prefer_const_constructors, deprecated_member_use, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -26,7 +26,7 @@ class RegisterTwitter extends StatelessWidget {
     switch (authResult.status) {
       case TwitterLoginStatus.loggedIn:
         ProgressDialogUtils.dismissProgressDialog();
-        LogUtils.showLog("${authResult.authToken}");
+        // LogUtils.showLog("${authResult.authToken}");
         Fluttertoast.showToast(
           msg: authResult.user!.email.toString(),
           backgroundColor: Colors.blue,

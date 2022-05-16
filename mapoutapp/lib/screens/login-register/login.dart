@@ -20,30 +20,32 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      width: MediaQuery.of(context).size.width,
-      alignment: Alignment.center,
-      child: Column(
-        //mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SeparatorLogoMain(),
-          LogoApp(),
-          SizedBox(height: 40),
-          RegisterGoogle(),
-          SizedBox(height: 20),
-          RegisterFacebook(),
-          SizedBox(height: 20),
-          RegisterTwitter(),
-          SizedBox(height: 20),
-          LoginCorreo(),
-          SizedBox(height: 20),
-          LoginRegisterSeparator(),
-          SizedBox(height: 20),
-          RegisterCorreo(),
-        ],
-      )
+    return Scaffold(
+      body: Container(
+        color: Colors.white,
+        width: MediaQuery.of(context).size.width,
+        alignment: Alignment.center,
+        child: Column(
+          //mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SeparatorLogoMain(),
+            LogoApp(),
+            SizedBox(height: 40),
+            RegisterGoogle(),
+            SizedBox(height: 20),
+            RegisterFacebook(),
+            SizedBox(height: 20),
+            RegisterTwitter(),
+            SizedBox(height: 20),
+            LoginCorreo(),
+            SizedBox(height: 20),
+            LoginRegisterSeparator(),
+            SizedBox(height: 20),
+            RegisterCorreo(),
+          ],
+        )
+      ),
     );
   }
 }

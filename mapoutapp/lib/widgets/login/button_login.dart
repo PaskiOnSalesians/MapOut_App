@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:mapoutapp/screens/search/search.dart';
+import 'package:mapoutapp/services/auth/login_state.dart';
+import 'package:provider/provider.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({
@@ -15,6 +17,12 @@ class LoginButton extends StatelessWidget {
       height: 50,
       child: TextButton(
         onPressed: (){
+          Provider.of<LoginState>(context).login();
+          
+          // *****************
+          // Verify user
+          // *****************
+          
           Navigator.of(context).push(MaterialPageRoute(builder: (context) => SearchScreen()));
         },
         style: ButtonStyle(

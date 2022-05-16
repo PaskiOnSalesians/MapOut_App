@@ -72,13 +72,14 @@ class _NotificactionsSettingsState extends State<NotificactionsSettings> {
                         ),
                       ),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width / 1.8,
+                        width: MediaQuery.of(context).size.width / 2.8,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Switch(
                               value: isSwitched,
                               onChanged: toggleSwitch,
+                              activeColor: const Color(0xFF50C3CB),
                             )
                           ],
                         ),

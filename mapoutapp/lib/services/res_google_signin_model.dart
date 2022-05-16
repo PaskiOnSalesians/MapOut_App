@@ -1,14 +1,14 @@
 import 'package:mapoutapp/utils/constants/key_constants.dart';
 
 class ResGoogleSignInModel {
-  String? displayName;
-  String? email;
-  String? id;
-  String? photoUrl;
-  String? token;
+  late String displayName;
+  late String email;
+  late String id;
+  late String photoUrl;
+  late String token;
 
   ResGoogleSignInModel(
-      {this.displayName, this.email, this.id, this.photoUrl, this.token});
+      {required this.displayName, required this.email, required this.id, required this.photoUrl, required this.token});
 
   ResGoogleSignInModel.fromJson(Map<String, dynamic> json) {
     displayName = json[KeyConstants.googleDisplayName];

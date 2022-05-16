@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mapoutapp/screens/login-register/login.dart';
 import 'package:mapoutapp/screens/profile/profile_definitivo.dart';
 import 'package:mapoutapp/screens/settings/subsettings/help.dart';
 import 'package:mapoutapp/screens/settings/subsettings/notifications.dart';
@@ -191,10 +192,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ),
                 ),
               ),
-              onTap: (){},
+              onTap: (){
+                //Provider.of<LoginState>(context).logout();
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Login()));
+              },
             ),
           ),
-          const SeparatorSection()            
+          const SeparatorSection()
         ]
       ),
     );

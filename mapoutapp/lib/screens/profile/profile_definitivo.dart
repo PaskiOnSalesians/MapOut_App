@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:mapoutapp/screens/search/search.dart';
 import 'package:mapoutapp/screens/settings/settings.dart';
+import 'package:mapoutapp/utils/constants/key_constants.dart';
+import 'package:mapoutapp/utils/constants/login_type.dart';
 
 class ProfileFinalScreen extends StatefulWidget {
   const ProfileFinalScreen({Key? key}) : super(key: key);
@@ -15,17 +17,27 @@ class _ProfileFinalScreenState extends State<ProfileFinalScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        actions: const [
+          Padding(
+            padding: EdgeInsets.only(top: 0),
+            child: SettingsButton(),
+          ),
+        ],
+        toolbarHeight: 80,
+      ),
       body: Container(
         color: Colors.white,
         child: Column(
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height/ 1.1,
+              height: MediaQuery.of(context).size.height/ 1.28,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children:  [
                   // Information profile
-                  const SizedBox(height: 40,),
-                  const SettingsButton(),
                   const ProfilePhoto(),
                   const SizedBox(height: 20,),
                   const ActionProfileButtons(),
@@ -217,32 +229,28 @@ class SettingsButton extends StatelessWidget {
   }
 }
 
-class FullNameDisplay extends StatelessWidget {
-  const FullNameDisplay({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: const [
-        Text(
-          'User Full Name',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Color(0xFFEB7C25)
-          ),
-        )
-      ],
-    );
-  }
-}
-
 class ProfilePhoto extends StatelessWidget {
   const ProfilePhoto({
     Key? key,
   }) : super(key: key);
+
+  String getUsername(){
+    if(LoginType.accessType == "Google") {
+      return KeyConstants.googleDisplayName;
+    } else if(LoginType.accessType == "Facebook"){
+      return KeyConstants.facebookUserDataFields["name"];
+    }
+    return "";
+  }
+
+  String getPhotoURL(){
+    if(LoginType.accessType == "Google") {
+      return KeyConstants.googlePhotoUrl;
+    } else if(LoginType.accessType == "Facebook"){
+      return KeyConstants.facebookUserDataFields["picture.width(200)"];
+    }
+    return "";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -251,9 +259,9 @@ class ProfilePhoto extends StatelessWidget {
       children: [
         Column(
           children: [
-            const Text(
-              'User Full Name',
-              style: TextStyle(
+            Text(
+              getUsername(),
+              style: const TextStyle(
                 color: Color(0xFFEB7C25),
                 fontWeight: FontWeight.bold,
                 fontSize: 20
@@ -295,9 +303,10 @@ class ProfilePhoto extends StatelessWidget {
           ],
         ),
         const SizedBox(width: 50,),
-        const CircleAvatar(
+        CircleAvatar(
           radius: 60,
-          backgroundColor: Color(0xFF50C3CB),
+          backgroundImage: NetworkImage(getPhotoURL()),
+          //backgroundColor: Color(0xFF50C3CB),
           //backgroundImage: Image(image: ''),
         )
       ],

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:mapoutapp/screens/profile/profile_definitivo.dart';
-import 'package:mapoutapp/screens/search/create_activity.dart';
-import 'package:mapoutapp/screens/search/search_categories.dart';
+import 'package:mapoutapp/screens/search/create_categories.dart';
+import 'package:mapoutapp/screens/search/search.dart';
 import 'package:mapoutapp/utils/constants/search_data.dart';
 
-class SearchScreen extends StatefulWidget {
-  const SearchScreen({Key? key}) : super(key: key);
+class CreateActivity extends StatefulWidget {
+  const CreateActivity({Key? key}) : super(key: key);
 
   @override
-  State<SearchScreen> createState() => _SearchScreenState();
+  State<CreateActivity> createState() => _CreateActivityState();
 }
 
-class _SearchScreenState extends State<SearchScreen> {
+class _CreateActivityState extends State<CreateActivity> {
   double _currentPrecio = 0, _currentTiempo = 0, _currentPersonas = 0;
 
   @override
@@ -42,9 +42,9 @@ class _SearchScreenState extends State<SearchScreen> {
                           value: _currentPrecio,
                           max: 100,
                           label: _currentPrecio.round().toString(),
-                          thumbColor: const Color(0xFFEB7C25),
+                          thumbColor: const Color(0xFF50C3CB),
                           divisions: 100,
-                          activeColor: const Color(0xFFEB7C25),
+                          activeColor: const Color(0xFF50C3CB),
                           inactiveColor: Colors.grey,
                           onChanged: (double value){
                             setState(() {
@@ -70,9 +70,9 @@ class _SearchScreenState extends State<SearchScreen> {
                           value: _currentTiempo,
                           max: 5,
                           label: _currentTiempo.round().toString(),
-                          thumbColor: const Color(0xFFEB7C25),
+                          thumbColor: const Color(0xFF50C3CB),
                           divisions: 5,
-                          activeColor: const Color(0xFFEB7C25),
+                          activeColor: const Color(0xFF50C3CB),
                           inactiveColor: Colors.grey,
                           onChanged: (double value){
                             setState(() {
@@ -98,14 +98,14 @@ class _SearchScreenState extends State<SearchScreen> {
                           value: _currentPersonas,
                           max: 12,
                           label: _currentPersonas.round().toString(),
-                          thumbColor: const Color(0xFFEB7C25),
+                          thumbColor: const Color(0xFF50C3CB),
                           divisions: 12,
-                          activeColor: const Color(0xFFEB7C25),
+                          activeColor: const Color(0xFF50C3CB),
                           inactiveColor: Colors.grey,
                           onChanged: (double value){
                             setState(() {
                               _currentPersonas = value;
-                              SearchData.personData = _currentPersonas;
+                              SearchData.personData = value;
                             });
                           },
                         ),
@@ -139,7 +139,7 @@ class MainTitle extends StatelessWidget {
           width: MediaQuery.of(context).size.width / 2, // 200
           height: MediaQuery.of(context).size.height / 6,
           child: const Text(
-            'BUSCAMOS UN PLAN?',
+            'CREAMOS UN PLAN?',
             style: TextStyle(
               fontSize: 30
             ),
@@ -253,21 +253,21 @@ class ActionButtons extends StatelessWidget {
             Container(
               width: 150,
               decoration: BoxDecoration(
-                color: const Color(0xFFEB7C25),
-                border: Border.all(color: const Color(0xFFEB7C25)),
+                color: Colors.white,
+                border: Border.all(color: Colors.grey),
                 borderRadius: const BorderRadius.all(Radius.circular(50)),
               ),
               child: ListTile(
                 title: const Text(
-                  'BUSCAR',
+                  'BUSCAR PLAN',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.grey,
                     fontWeight: FontWeight.bold,
                   ),
                   textAlign: TextAlign.center,
                 ),
                 onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CategoriesSearch()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SearchScreen()));
                 },
               )
             )
@@ -279,21 +279,21 @@ class ActionButtons extends StatelessWidget {
             Container(
               width: 150,
               decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(color: Colors.grey),
+                color: const Color(0xFF50C3CB),
+                border: Border.all(color: const Color(0xFF50C3CB)),
                 borderRadius: const BorderRadius.all(Radius.circular(50)),
               ),
               child: ListTile(
-                title:  const Text(
-                  'CREAR PLAN',
+                title: const Text(
+                  'CREAR',
                   style: TextStyle(
-                    color: Colors.grey,
+                    color: Colors.white,
                     fontWeight: FontWeight.bold
                   ),
                   textAlign: TextAlign.center,
                 ),
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CreateActivity()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CategoriesCreateActivity()));
                 },
               )
             )
@@ -331,7 +331,9 @@ class Menu extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          IconButton(onPressed: (){}, icon: const Icon(Icons.search, color: Color(0xFFEB7C25), size: 35,)),
+          IconButton(onPressed: (){
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SearchScreen()));
+          }, icon: const Icon(Icons.search, color: Color(0xFF50C3CB), size: 35,)),
           const SizedBox(width: 10,),
           IconButton(onPressed: (){
             
