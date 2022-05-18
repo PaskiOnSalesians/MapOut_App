@@ -206,9 +206,7 @@ class _CreateActivityInfoState extends State<CreateActivityInfo> {
       'title': title,
       'description': description,
       'address': GeoPoint(address.latitude, address.longitude),
-      'price': SearchData.priceData,
-      'time': SearchData.timeData,
-      'persons': SearchData.personData,
+      'filters': [SearchData.priceData, SearchData.timeData, SearchData.personData], // Price, time, persons
       'category': Preferences.preferencesSelectedCreate,
       'userid': [uid]
     });

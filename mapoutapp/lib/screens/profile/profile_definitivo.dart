@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mapoutapp/screens/chats/chat.dart';
 import 'package:mapoutapp/screens/search/search.dart';
 import 'package:mapoutapp/screens/settings/settings.dart';
 import 'package:mapoutapp/utils/constants/key_constants.dart';
@@ -19,6 +20,12 @@ String? userId;
 
 class _ProfileFinalScreenState extends State<ProfileFinalScreen> {
   final db = FirebaseFirestore.instance;
+
+  @override
+  void initState(){
+    FirebaseAuth auth = FirebaseAuth.instance;
+    String uid = auth.currentUser!.uid.toString();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +62,7 @@ class _ProfileFinalScreenState extends State<ProfileFinalScreen> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height / 4,
                     child: StreamBuilder<QuerySnapshot>(
-                      stream: db.collection('ads').snapshots(),
+                      stream: db.collection('ads').where('userid', arrayContains: userId).snapshots(),
                       builder: (context, snapshot) {
                         if(!snapshot.hasData){
                           return const Center(child: CircularProgressIndicator());
@@ -63,7 +70,7 @@ class _ProfileFinalScreenState extends State<ProfileFinalScreen> {
                           return SizedBox(
                             width: MediaQuery.of(context).size.width / 1.2,
                             child: ListView(
-                              children: snapshot.data['userid'].docs.map((doc) {
+                              children: snapshot.data!.docs.map((doc) {
                                 return Card(
                                   elevation: 0,
                                   shape: const RoundedRectangleBorder(
@@ -86,7 +93,7 @@ class _ProfileFinalScreenState extends State<ProfileFinalScreen> {
                                       ),
                                     ),
                                     onTap: (){
-                                      //eventSetup();
+                                      
                                     },
                                   ),
                                 );
@@ -221,7 +228,9 @@ class Menu extends StatelessWidget {
             Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SearchScreen()));
           }, icon: const Icon(Icons.search, color: Colors.grey, size: 35,)),
           const SizedBox(width: 10,),
-          IconButton(onPressed: (){}, icon: const Icon(Icons.chat_bubble_outline_rounded, color: Colors.grey, size: 35,)),
+          IconButton(onPressed: (){
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ChatScreen()));
+          }, icon: const Icon(Icons.chat_bubble_outline_rounded, color: Colors.grey, size: 35,)),
           const SizedBox(width: 10,),
           IconButton(onPressed: (){}, icon: const Icon(Icons.person_outline, color: Color(0xFFEB7C25), size: 35,))
         ],

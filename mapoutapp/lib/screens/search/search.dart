@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mapoutapp/screens/chats/chat.dart';
 import 'package:mapoutapp/screens/profile/profile_definitivo.dart';
 import 'package:mapoutapp/screens/search/create_activity.dart';
 import 'package:mapoutapp/screens/search/results/all_documents.dart';
@@ -352,7 +353,7 @@ class Menu extends StatelessWidget {
           IconButton(onPressed: (){}, icon: const Icon(Icons.search, color: Color(0xFFEB7C25), size: 35,)),
           const SizedBox(width: 10,),
           IconButton(onPressed: (){
-            
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ChatScreen()));
           }, icon: const Icon(Icons.chat_bubble_outline_rounded, color: Colors.grey, size: 35,)),
           const SizedBox(width: 10,),
           IconButton(onPressed: (){
