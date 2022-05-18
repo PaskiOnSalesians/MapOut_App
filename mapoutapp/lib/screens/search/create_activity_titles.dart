@@ -186,7 +186,7 @@ class _CreateActivityInfoState extends State<CreateActivityInfo> {
                 onTap: () {
                   LatLng finalAddress = LatLng(destinationAddress.coords!.latitude, destinationAddress.coords!.longitude);
                   LogUtils.showLog(finalAddress.toString());
-                  eventSetup(title, description, finalAddress);
+                  eventSetup(title, description, finalAddress, _controller.text);
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SearchScreen()));
                 },
               )
@@ -197,7 +197,7 @@ class _CreateActivityInfoState extends State<CreateActivityInfo> {
     );
   }
 
-  Future<void> eventSetup(String title, String description, LatLng address) async{
+  Future<void> eventSetup(String title, String description, LatLng address, String addressName) async{
     CollectionReference ads = FirebaseFirestore.instance.collection('ads');
     FirebaseAuth auth = FirebaseAuth.instance;
     String uid = auth.currentUser!.uid.toString();
@@ -208,6 +208,7 @@ class _CreateActivityInfoState extends State<CreateActivityInfo> {
       'address': GeoPoint(address.latitude, address.longitude),
       'filters': [SearchData.priceData, SearchData.timeData, SearchData.personData], // Price, time, persons
       'category': Preferences.preferencesSelectedCreate,
+      'address_name': addressName,
       'userid': [uid]
     });
     return;

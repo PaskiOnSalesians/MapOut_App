@@ -6,7 +6,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:mapoutapp/screens/activity_screen/activity_screen.dart';
 import 'package:mapoutapp/screens/search/search.dart';
 import 'package:mapoutapp/utils/constants/activity_details.dart';
 import 'package:mapoutapp/utils/constants/selected_preferences.dart';
@@ -126,11 +125,21 @@ class _AllDocumentsState extends State<AllDocuments> {
                                   fontSize: 20
                                 ),
                               ),
+                              subtitle: ListTile(
+                                leading: const Icon(Icons.pin_drop, color: Color(0xFF50C3CB),),
+                                title: Text(
+                                  (doc.data() as dynamic)['address_name'],
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    color: Color(0xFF5A5A5A)
+                                  ),
+                                ),
+                              ),
                               onTap: (){
                                 // Getting data for showing the next window
                                 ActivityDetails.idActivity = doc.id.toString();
                                 
-                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ActivityDetailsScreen()));
+                                //Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ActivityDetailsScreen()));
                               },
                             ),
                           );

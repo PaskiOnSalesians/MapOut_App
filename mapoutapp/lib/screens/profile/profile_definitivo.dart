@@ -92,6 +92,16 @@ class _ProfileFinalScreenState extends State<ProfileFinalScreen> {
                                         fontSize: 20
                                       ),
                                     ),
+                                    subtitle: ListTile(
+                                      leading: const Icon(Icons.pin_drop, color: Color(0xFF50C3CB),),
+                                      title: Text(
+                                        (doc.data() as dynamic)['address_name'],
+                                        style: const TextStyle(
+                                          fontSize: 12,
+                                          color: Color(0xFF5A5A5A)
+                                        ),
+                                      ),
+                                    ),
                                     onTap: (){
                                       
                                     },
