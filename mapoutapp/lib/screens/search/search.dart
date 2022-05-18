@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mapoutapp/screens/profile/profile_definitivo.dart';
 import 'package:mapoutapp/screens/search/create_activity.dart';
+import 'package:mapoutapp/screens/search/results/all_documents.dart';
 import 'package:mapoutapp/screens/search/search_categories.dart';
 import 'package:mapoutapp/utils/constants/search_data.dart';
 
@@ -23,7 +24,7 @@ class _SearchScreenState extends State<SearchScreen> {
         child: Column(
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height/ 1.1,
+              height: MediaQuery.of(context).size.height/ 1.2,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -117,6 +118,23 @@ class _SearchScreenState extends State<SearchScreen> {
                 ],
               ),
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 2,
+                  height: 50,
+                  child: TextButton.icon(
+                    onPressed: (){
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CategoriesSearch()));
+                    },
+                    icon: const Icon(Icons.arrow_right, color: Colors.grey,),
+                    label: const Text('Categorias', style: TextStyle(color: Colors.grey),)
+                  )
+                )
+              ],
+            ),
+            const SizedBox(height: 20,),
             const Menu()
           ],
         )
@@ -267,7 +285,7 @@ class ActionButtons extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 onTap: (){
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CategoriesSearch()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const AllDocuments()));
                 },
               )
             )

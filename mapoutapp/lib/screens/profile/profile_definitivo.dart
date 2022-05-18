@@ -1,5 +1,7 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: camel_case_types, iterable_contains_unrelated_type
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mapoutapp/screens/search/search.dart';
 import 'package:mapoutapp/screens/settings/settings.dart';
@@ -13,7 +15,11 @@ class ProfileFinalScreen extends StatefulWidget {
   State<ProfileFinalScreen> createState() => _ProfileFinalScreenState();
 }
 
+String? userId;
+
 class _ProfileFinalScreenState extends State<ProfileFinalScreen> {
+  final db = FirebaseFirestore.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,13 +52,52 @@ class _ProfileFinalScreenState extends State<ProfileFinalScreen> {
                   const SizedBox(height: 10,),
                   const InterestText(),
                   const SizedBox(height: 20,),
-                  Column(
-                    children: [
-                      Container(
-
-                      )
-                    ],
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 4,
+                    child: StreamBuilder<QuerySnapshot>(
+                      stream: db.collection('ads').snapshots(),
+                      builder: (context, snapshot) {
+                        if(!snapshot.hasData){
+                          return const Center(child: CircularProgressIndicator());
+                        } else{
+                          return SizedBox(
+                            width: MediaQuery.of(context).size.width / 1.2,
+                            child: ListView(
+                              children: snapshot.data['userid'].docs.map((doc) {
+                                return Card(
+                                  elevation: 0,
+                                  shape: const RoundedRectangleBorder(
+                                    side: BorderSide(
+                                      color: Colors.grey,
+                                    ),
+                                  borderRadius: BorderRadius.all(Radius.circular(12)),),
+                                  child: ListTile(
+                                    leading: IconButton(
+                                      onPressed: (){
+                                        deleteUserSetup(doc.id);
+                                      },
+                                      icon: const Icon(Icons.done, color: Color(0xFF50C3CB),)
+                                    ),
+                                    title: Text(
+                                      (doc.data() as dynamic)['title'],
+                                      style: const TextStyle(
+                                        color: Color(0xFF50C3CB),
+                                        fontSize: 20
+                                      ),
+                                    ),
+                                    onTap: (){
+                                      //eventSetup();
+                                    },
+                                  ),
+                                );
+                              }).toList(),
+                            ),
+                          );
+                        }
+                      }
+                    ),
                   ),
+                  const SizedBox(height: 20,),
                   const AddNewAction()
 
                 ],
@@ -63,6 +108,23 @@ class _ProfileFinalScreenState extends State<ProfileFinalScreen> {
         ),
       )
     );
+  }
+
+  Future<void> deleteUserSetup(String documentName) async{
+    CollectionReference ads = FirebaseFirestore.instance.collection('ads');
+    FirebaseAuth auth = FirebaseAuth.instance;
+    String uid = auth.currentUser!.uid.toString();
+
+    userId = uid;
+
+    List<dynamic> list = [];
+
+    list.add(uid);
+
+    ads.doc(documentName).update({
+      'userid': FieldValue.arrayRemove(list)
+    });
+    return;
   }
 }
 

@@ -1,10 +1,12 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_literals_to_create_immutables, prefer_const_constructors
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mapoutapp/screens/login-register/login.dart';
+import 'package:mapoutapp/screens/search/search.dart';
 import 'package:mapoutapp/widgets/others/logo_app.dart';
 import 'package:mapoutapp/widgets/others/logo_separator_register.dart';
-import 'package:mapoutapp/widgets/register/button_register.dart';
 import 'package:mapoutapp/widgets/register/credentialsFields/email_field.dart';
 import 'package:mapoutapp/widgets/register/credentialsFields/name_field.dart';
 import 'package:mapoutapp/widgets/register/credentialsFields/user_field.dart';
@@ -20,6 +22,8 @@ class RegisterEmail extends StatefulWidget {
 class _RegisterEmailState extends State<RegisterEmail> {
   bool isChecked = false;
   bool _isObscure = true;
+
+  final _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -127,10 +131,63 @@ class _RegisterEmailState extends State<RegisterEmail> {
               ],
             ),
             SizedBox(height: 50),
-            RegisterButton()
+            SizedBox(
+              width: MediaQuery.of(context).size.width - 100,
+              height: 50,
+              child: TextButton(
+                onPressed: () async{
+                  try {
+                    if(isChecked){
+                      final newUser = await _auth.createUserWithEmailAndPassword(
+                        email: Globals.email, password: Globals.password
+                      );
+                      userSetup(Globals.username, Globals.fullname, Globals.email);
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SearchScreen()));
+                    }
+                  } catch (e) {
+                    print(e);
+                  }
+                },
+                style: ButtonStyle(
+                  backgroundColor:  MaterialStateProperty.all(Color(0xFFEB7C25)),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'ENTRAR',
+                      style: TextStyle(
+                        color: Color(0xFFFFFFFF),
+                        fontSize: 18,
+                        fontWeight: FontWeight.w900
+                      ),
+                    ),
+                  ],
+                )
+              ),
+            )
           ],
         ),
       )
     );
+  }
+
+  Future<void> userSetup(String displayName, String fullname, String email) async{
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+    FirebaseAuth auth = FirebaseAuth.instance;
+    String uid = auth.currentUser!.uid.toString();
+
+    users.add({
+      'displayName': displayName,
+      'uid': uid,
+      'fullname': fullname,
+      'email': email
+    });
+    return;
   }
 }

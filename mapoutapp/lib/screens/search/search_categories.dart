@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mapoutapp/screens/profile/profile_definitivo.dart';
 import 'package:mapoutapp/screens/search/search.dart';
 import 'package:mapoutapp/utils/constants/selected_preferences.dart';
-import 'package:mapoutapp/utils/log_utils.dart';
 import 'package:selectable_container/selectable_container.dart';
 
 class CategoriesSearch extends StatefulWidget {
@@ -54,7 +53,7 @@ class _CategoriesSearchState extends State<CategoriesSearch> {
           children: [
             SizedBox(
               width: MediaQuery.of(context).size.width / 1.2,
-              height: MediaQuery.of(context).size.height / 1.46,
+              height: MediaQuery.of(context).size.height / 1.32,
               child: Column(
                 children: [
                   Row(
@@ -65,26 +64,25 @@ class _CategoriesSearchState extends State<CategoriesSearch> {
                         selectedBorderColor: const Color(0xFFEB7C25),
                         selectedBackgroundColor: const Color(0xFFEB7C25),
                         selected: selectionCerveza,
+                        marginColor: Colors.white,
                         onValueChanged: (value) {
                           setState(() {
                             if(selectionCerveza){
-                              _colorForeCerveza = Colors.black;
-                              
-                              
 
-                              if(!Preferences.preferencesSelectedSearch.contains("Cerveza")){
-                                Preferences.preferencesSelectedSearch.add("Cerveza");
-                                LogUtils.showLog(Preferences.preferencesSelectedSearch.toString());
+                              if(Preferences.preferencesSelectedSearch.contains("Cerveza")){
+                                Preferences.preferencesSelectedSearch.remove("Cerveza");
                               }
+
+                              _colorForeCerveza = Colors.black;
 
                               selectionCerveza = false;
                             } else{
-                              if(Preferences.preferencesSelectedSearch.contains("Cerveza")){
-                                Preferences.preferencesSelectedSearch.remove("Cerveza");
-                                LogUtils.showLog(Preferences.preferencesSelectedSearch.toString());
-                              }
-                              _colorForeCerveza = Colors.white;
-                              selectionCerveza = true;
+                                if(!Preferences.preferencesSelectedSearch.contains("Cerveza")){
+                                  Preferences.preferencesSelectedSearch.add("Cerveza");
+                                }
+
+                                _colorForeCerveza = Colors.white;
+                                selectionCerveza = true;
                             }
                           });
                         },
@@ -106,14 +104,25 @@ class _CategoriesSearchState extends State<CategoriesSearch> {
                         selectedBorderColor: const Color(0xFFEB7C25),
                         selectedBackgroundColor: const Color(0xFFEB7C25),
                         selected: selectionCafe,
+                        marginColor: Colors.white,
                         onValueChanged: (value) {
                           setState(() {
                             if(selectionCafe){
+
+                              if(Preferences.preferencesSelectedSearch.contains("Café")){
+                                Preferences.preferencesSelectedSearch.remove("Café");
+                              }
+
                               _colorForeCafe = Colors.black;
+
                               selectionCafe = false;
                             } else{
-                              _colorForeCafe = Colors.white;
-                              selectionCafe = true;
+                                if(!Preferences.preferencesSelectedSearch.contains("Café")){
+                                  Preferences.preferencesSelectedSearch.add("Café");
+                                }
+
+                                _colorForeCafe = Colors.white;
+                                selectionCafe = true;
                             }
                           });
                         },
@@ -135,16 +144,26 @@ class _CategoriesSearchState extends State<CategoriesSearch> {
                         selectedBorderColor: const Color(0xFFEB7C25),
                         selectedBackgroundColor: const Color(0xFFEB7C25),
                         selected: selectionIdiomas,
+                        marginColor: Colors.white,
                         onValueChanged: (value) {
                           setState(() {
                             if(selectionIdiomas){
+
+                              if(Preferences.preferencesSelectedSearch.contains("Idiomas")){
+                                Preferences.preferencesSelectedSearch.remove("Idiomas");
+                              }
+
                               _colorForeIdiomas = Colors.black;
+
                               selectionIdiomas = false;
                             } else{
-                              _colorForeIdiomas = Colors.white;
-                              selectionIdiomas = true;
-                            }
+                                if(!Preferences.preferencesSelectedSearch.contains("Idiomas")){
+                                  Preferences.preferencesSelectedSearch.add("Idiomas");
+                                }
 
+                                _colorForeIdiomas = Colors.white;
+                                selectionIdiomas = true;
+                            }
                           });
                         },
                         child: Padding(
@@ -169,14 +188,25 @@ class _CategoriesSearchState extends State<CategoriesSearch> {
                         selectedBorderColor: const Color(0xFFEB7C25),
                         selectedBackgroundColor: const Color(0xFFEB7C25),
                         selected: selectionEscalada,
+                        marginColor: Colors.white,
                         onValueChanged: (value) {
                           setState(() {
                             if(selectionEscalada){
+
+                              if(Preferences.preferencesSelectedSearch.contains("Escalada")){
+                                Preferences.preferencesSelectedSearch.remove("Escalada");
+                              }
+
                               _colorForeEscalada = Colors.black;
+
                               selectionEscalada = false;
                             } else{
-                              _colorForeEscalada = Colors.white;
-                              selectionEscalada = true;
+                                if(!Preferences.preferencesSelectedSearch.contains("Escalada")){
+                                  Preferences.preferencesSelectedSearch.add("Escalada");
+                                }
+
+                                _colorForeEscalada = Colors.white;
+                                selectionEscalada = true;
                             }
                           });
                         },
@@ -198,14 +228,25 @@ class _CategoriesSearchState extends State<CategoriesSearch> {
                         selectedBorderColor: const Color(0xFFEB7C25),
                         selectedBackgroundColor: const Color(0xFFEB7C25),
                         selected: selectionCine,
+                        marginColor: Colors.white,
                         onValueChanged: (value) {
                           setState(() {
                             if(selectionCine){
+
+                              if(Preferences.preferencesSelectedSearch.contains("Cine")){
+                                Preferences.preferencesSelectedSearch.remove("Cine");
+                              }
+
                               _colorForeCine = Colors.black;
+
                               selectionCine = false;
                             } else{
-                              _colorForeCine = Colors.white;
-                              selectionCine = true;
+                                if(!Preferences.preferencesSelectedSearch.contains("Cine")){
+                                  Preferences.preferencesSelectedSearch.add("Cine");
+                                }
+
+                                _colorForeCine = Colors.white;
+                                selectionCine = true;
                             }
                           });
                         },
@@ -227,16 +268,26 @@ class _CategoriesSearchState extends State<CategoriesSearch> {
                         selectedBorderColor: const Color(0xFFEB7C25),
                         selectedBackgroundColor: const Color(0xFFEB7C25),
                         selected: selectionFoto,
+                        marginColor: Colors.white,
                         onValueChanged: (value) {
                           setState(() {
                             if(selectionFoto){
+
+                              if(Preferences.preferencesSelectedSearch.contains("Foto")){
+                                Preferences.preferencesSelectedSearch.remove("Foto");
+                              }
+
                               _colorForeFoto = Colors.black;
+
                               selectionFoto = false;
                             } else{
-                              _colorForeFoto = Colors.white;
-                              selectionFoto = true;
-                            }
+                                if(!Preferences.preferencesSelectedSearch.contains("Foto")){
+                                  Preferences.preferencesSelectedSearch.add("Foto");
+                                }
 
+                                _colorForeFoto = Colors.white;
+                                selectionFoto = true;
+                            }
                           });
                         },
                         child: Padding(
@@ -261,14 +312,25 @@ class _CategoriesSearchState extends State<CategoriesSearch> {
                         selectedBorderColor: const Color(0xFFEB7C25),
                         selectedBackgroundColor: const Color(0xFFEB7C25),
                         selected: selectionCoches,
+                        marginColor: Colors.white,
                         onValueChanged: (value) {
                           setState(() {
                             if(selectionCoches){
+
+                              if(Preferences.preferencesSelectedSearch.contains("Coches")){
+                                Preferences.preferencesSelectedSearch.remove("Coches");
+                              }
+
                               _colorForeCoches = Colors.black;
+
                               selectionCoches = false;
                             } else{
-                              _colorForeCoches = Colors.white;
-                              selectionCoches = true;
+                                if(!Preferences.preferencesSelectedSearch.contains("Coches")){
+                                  Preferences.preferencesSelectedSearch.add("Coches");
+                                }
+
+                                _colorForeCoches = Colors.white;
+                                selectionCoches = true;
                             }
                           });
                         },
@@ -290,14 +352,25 @@ class _CategoriesSearchState extends State<CategoriesSearch> {
                         selectedBorderColor: const Color(0xFFEB7C25),
                         selectedBackgroundColor: const Color(0xFFEB7C25),
                         selected: selectionMotos,
+                        marginColor: Colors.white,
                         onValueChanged: (value) {
                           setState(() {
                             if(selectionMotos){
+
+                              if(Preferences.preferencesSelectedSearch.contains("Motos")){
+                                Preferences.preferencesSelectedSearch.remove("Motos");
+                              }
+
                               _colorForeMotos = Colors.black;
+
                               selectionMotos = false;
                             } else{
-                              _colorForeMotos = Colors.white;
-                              selectionMotos = true;
+                                if(!Preferences.preferencesSelectedSearch.contains("Motos")){
+                                  Preferences.preferencesSelectedSearch.add("Motos");
+                                }
+
+                                _colorForeMotos = Colors.white;
+                                selectionMotos = true;
                             }
                           });
                         },
@@ -319,16 +392,26 @@ class _CategoriesSearchState extends State<CategoriesSearch> {
                         selectedBorderColor: const Color(0xFFEB7C25),
                         selectedBackgroundColor: const Color(0xFFEB7C25),
                         selected: selectionGimnasio,
+                        marginColor: Colors.white,
                         onValueChanged: (value) {
                           setState(() {
                             if(selectionGimnasio){
+
+                              if(Preferences.preferencesSelectedSearch.contains("Gimnasio")){
+                                Preferences.preferencesSelectedSearch.remove("Gimnasio");
+                              }
+
                               _colorForeGimnasio = Colors.black;
+
                               selectionGimnasio = false;
                             } else{
-                              _colorForeGimnasio = Colors.white;
-                              selectionGimnasio = true;
-                            }
+                                if(!Preferences.preferencesSelectedSearch.contains("Gimnasio")){
+                                  Preferences.preferencesSelectedSearch.add("Gimnasio");
+                                }
 
+                                _colorForeGimnasio = Colors.white;
+                                selectionGimnasio = true;
+                            }
                           });
                         },
                         child: Padding(
@@ -353,14 +436,25 @@ class _CategoriesSearchState extends State<CategoriesSearch> {
                         selectedBorderColor: const Color(0xFFEB7C25),
                         selectedBackgroundColor: const Color(0xFFEB7C25),
                         selected: selectionVideojuegos,
+                        marginColor: Colors.white,
                         onValueChanged: (value) {
                           setState(() {
                             if(selectionVideojuegos){
+
+                              if(Preferences.preferencesSelectedSearch.contains("Videojuegos")){
+                                Preferences.preferencesSelectedSearch.remove("Videojuegos");
+                              }
+
                               _colorForeVideojuegos = Colors.black;
+
                               selectionVideojuegos = false;
                             } else{
-                              _colorForeVideojuegos = Colors.white;
-                              selectionVideojuegos = true;
+                                if(!Preferences.preferencesSelectedSearch.contains("Videojuegos")){
+                                  Preferences.preferencesSelectedSearch.add("Videojuegos");
+                                }
+
+                                _colorForeVideojuegos = Colors.white;
+                                selectionVideojuegos = true;
                             }
                           });
                         },
@@ -382,14 +476,25 @@ class _CategoriesSearchState extends State<CategoriesSearch> {
                         selectedBorderColor: const Color(0xFFEB7C25),
                         selectedBackgroundColor: const Color(0xFFEB7C25),
                         selected: selectionLectura,
+                        marginColor: Colors.white,
                         onValueChanged: (value) {
                           setState(() {
                             if(selectionLectura){
+
+                              if(Preferences.preferencesSelectedSearch.contains("Lectura")){
+                                Preferences.preferencesSelectedSearch.remove("Lectura");
+                              }
+
                               _colorForeLectura = Colors.black;
+
                               selectionLectura = false;
                             } else{
-                              _colorForeLectura = Colors.white;
-                              selectionLectura = true;
+                                if(!Preferences.preferencesSelectedSearch.contains("Lectura")){
+                                  Preferences.preferencesSelectedSearch.add("Lectura");
+                                }
+
+                                _colorForeLectura = Colors.white;
+                                selectionLectura = true;
                             }
                           });
                         },
@@ -411,14 +516,25 @@ class _CategoriesSearchState extends State<CategoriesSearch> {
                         selectedBorderColor: const Color(0xFFEB7C25),
                         selectedBackgroundColor: const Color(0xFFEB7C25),
                         selected: selectionTeatro,
+                        marginColor: Colors.white,
                         onValueChanged: (value) {
                           setState(() {
                             if(selectionTeatro){
+
+                              if(Preferences.preferencesSelectedSearch.contains("Teatro")){
+                                Preferences.preferencesSelectedSearch.remove("Teatro");
+                              }
+
                               _colorForeTeatro = Colors.black;
+
                               selectionTeatro = false;
                             } else{
-                              _colorForeTeatro = Colors.white;
-                              selectionTeatro = true;
+                                if(!Preferences.preferencesSelectedSearch.contains("Teatro")){
+                                  Preferences.preferencesSelectedSearch.add("Teatro");
+                                }
+
+                                _colorForeTeatro = Colors.white;
+                                selectionTeatro = true;
                             }
                           });
                         },
@@ -437,36 +553,6 @@ class _CategoriesSearchState extends State<CategoriesSearch> {
                   )
                 ],
               )
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Column(
-                  children: [
-                    Container(
-                      width: 150,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFEB7C25),
-                        border: Border.all(color: const Color(0xFFEB7C25)),
-                        borderRadius: const BorderRadius.all(Radius.circular(50)),
-                      ),
-                      child: ListTile(
-                        title:  const Text(
-                          'CONTINUAR',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        onTap: () {
-                          // Agregar a firebase un documento nuevo
-                        },
-                      )
-                    )
-                  ],
-                )
-              ],
             ),
             const SizedBox(height: 50,),
             const Menu()

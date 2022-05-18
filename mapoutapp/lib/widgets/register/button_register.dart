@@ -2,7 +2,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:mapoutapp/screens/main_screen.dart';
+import 'package:mapoutapp/screens/search/search.dart';
 import 'package:mapoutapp/widgets/register/global/global_variables.dart';
 
 class RegisterButton extends StatelessWidget {
@@ -22,7 +22,7 @@ class RegisterButton extends StatelessWidget {
           try {
             final newUser = await _auth.createUserWithEmailAndPassword(
                 email: Globals.email, password: Globals.password);
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const MainScreen()));
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SearchScreen()));
           } catch (e) {
             print(e);
           }

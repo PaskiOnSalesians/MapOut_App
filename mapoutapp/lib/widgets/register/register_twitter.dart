@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:mapoutapp/screens/search/search.dart';
+import 'package:mapoutapp/screens/error/error.dart';
 import 'package:mapoutapp/utils/constants/social_keys.dart';
 import 'package:mapoutapp/utils/log_utils.dart';
 import 'package:mapoutapp/utils/widgets/progress_dialog.dart';
@@ -31,7 +31,6 @@ class RegisterTwitter extends StatelessWidget {
           msg: authResult.user!.email.toString(),
           backgroundColor: Colors.blue,
           textColor: Colors.white);
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SearchScreen()));
         break;
       case TwitterLoginStatus.cancelledByUser:
         _showFailureResult(authResult);
@@ -61,7 +60,8 @@ class RegisterTwitter extends StatelessWidget {
       width: MediaQuery.of(context).size.width - 125,
       child: TextButton(
         onPressed: (){
-          _twitterSignInProcess(context);
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ErrorScreen()));
+          //_twitterSignInProcess(context);
         },
         style: ButtonStyle(
           backgroundColor:  MaterialStateProperty.all(Color(0xff06B0E8)),

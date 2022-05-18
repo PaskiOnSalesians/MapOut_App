@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mapoutapp/screens/error/error.dart';
 import 'package:mapoutapp/utils/constants/key_constants.dart';
 import 'package:mapoutapp/utils/constants/login_type.dart';
 
@@ -33,7 +34,8 @@ class RegisterFacebook extends StatelessWidget {
       width: MediaQuery.of(context).size.width - 125,
       child: TextButton(
         onPressed: (){
-          signInWithFacebook();
+          //signInWithFacebook();
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ErrorScreen()));
         },
         style: ButtonStyle(
           backgroundColor:  MaterialStateProperty.all(Color(0xff1877F2)),

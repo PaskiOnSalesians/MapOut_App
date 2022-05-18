@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mapoutapp/screens/settings/settings.dart';
+import 'package:mapoutapp/screens/settings/subsettings/change_password.dart';
 
 class SecurityScreen extends StatefulWidget {
   const SecurityScreen({Key? key}) : super(key: key);
@@ -125,6 +126,9 @@ class _SecurityScreenState extends State<SecurityScreen> {
                         ],
                       ),
                     ),
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ChangePassword()));
+                    },
                   ),
                 ),
               ],

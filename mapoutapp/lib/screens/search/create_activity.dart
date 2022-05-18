@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mapoutapp/screens/profile/profile_definitivo.dart';
+import 'package:mapoutapp/screens/search/create_activity_titles.dart';
 import 'package:mapoutapp/screens/search/create_categories.dart';
 import 'package:mapoutapp/screens/search/search.dart';
 import 'package:mapoutapp/utils/constants/search_data.dart';
@@ -23,7 +25,7 @@ class _CreateActivityState extends State<CreateActivity> {
         child: Column(
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height/ 1.1,
+              height: MediaQuery.of(context).size.height/ 1.2,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -117,6 +119,23 @@ class _CreateActivityState extends State<CreateActivity> {
                 ],
               ),
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 2,
+                  height: 50,
+                  child: TextButton.icon(
+                    onPressed: (){
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CategoriesCreateActivity()));
+                    },
+                    icon: const Icon(Icons.arrow_right, color: Colors.grey,),
+                    label: const Text('Categorias', style: TextStyle(color: Colors.grey),)
+                  )
+                )
+              ],
+            ),
+            const SizedBox(height: 20,),
             const Menu()
           ],
         )
@@ -293,7 +312,16 @@ class ActionButtons extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CategoriesCreateActivity()));
+                  if(SearchData.personData! > 0.0 && SearchData.priceData! > 0.0 && SearchData.timeData! > 0.0){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const CreateActivityInfo()));
+                  } else{
+                    Fluttertoast.showToast(
+                      msg: 'Error: Tiene que haber un precio, tiempo i personas',
+                      backgroundColor: Colors.red,
+                      textColor: Colors.white,
+                      fontSize: 16
+                    );
+                  }
                 },
               )
             )
