@@ -2,6 +2,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mapoutapp/screens/search/search.dart';
 import 'package:mapoutapp/services/res_google_signin_model.dart';
@@ -43,12 +44,17 @@ class _RegisterGoogleState extends State<RegisterGoogle> {
       width: MediaQuery.of(context).size.width - 125,
       child: TextButton(
         onPressed: () async{
-          await signInWithGoogle();
+          try{
+            await signInWithGoogle();
 
-          KeyConstants.googleDisplayName = googleUser!.displayName!;
-          KeyConstants.googlePhotoUrl = googleUser!.photoUrl!;
+            KeyConstants.googleDisplayName = googleUser!.displayName!;
+            KeyConstants.googlePhotoUrl = googleUser!.photoUrl!;
 
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SearchScreen()));
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SearchScreen()));
+          } catch(e){
+            Fluttertoast.showToast(msg: e.toString(), backgroundColor: Colors.red, textColor: Colors.white);
+          }
+          
         },
         style: ButtonStyle(
           backgroundColor:  MaterialStateProperty.all(Color(0xFFF0F0F0)),

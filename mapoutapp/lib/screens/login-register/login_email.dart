@@ -1,9 +1,10 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_literals_to_create_immutables, prefer_const_constructors
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mapoutapp/screens/login-register/login.dart';
-import 'package:mapoutapp/widgets/login/button_login.dart';
-import 'package:mapoutapp/widgets/login/credentialFields/user_field.dart';
+import 'package:mapoutapp/screens/search/search.dart';
 import 'package:mapoutapp/widgets/others/logo_app.dart';
 import 'package:mapoutapp/widgets/others/logo_separator.dart';
 
@@ -16,6 +17,22 @@ class LoginEmail extends StatefulWidget {
 
 class _LoginEmailState extends State<LoginEmail> {
   bool _isObscure = true;
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  late String email, password;
+
+  Future<User?> signInWithEmailAndPassword({required String email, required String password}) async {
+    try {
+      final userCredential = await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      return userCredential.user;
+    } catch (e) {
+      throw Fluttertoast.showToast(msg: e.toString(), backgroundColor: Colors.red, textColor: Colors.white);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +66,36 @@ class _LoginEmailState extends State<LoginEmail> {
             SeparatorLogoArea(),
             LogoApp(),
             SizedBox(height: 40),
-            UserField(),
+            Container(
+              width: MediaQuery.of(context).size.width - 100,
+              height: 50,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(25),
+                border: Border.all(
+                  width: 10, 
+                  color: Color(0xFFF0F0F0),
+                  style: BorderStyle.solid
+                )
+              ),
+              child: Container(
+                color: Color(0xFFF0F0F0),
+                child: SizedBox(
+                  child: TextField(
+                    onChanged: (value){
+                      email = value;
+                    },
+                    decoration: InputDecoration(
+                      filled: true,
+                      hintText: "Correo electrónico",
+                      fillColor: Color(0xFFF0F0F0),
+                      prefixIcon: Icon(Icons.mail, color: Color(0xFF50C3CB)),
+                      contentPadding: EdgeInsets.fromLTRB(0,4,0,8),
+                      border: InputBorder.none
+                    ),
+                  ),
+                ),
+              ),
+            ),
             SizedBox(height: 30),
             Container(
               width: MediaQuery.of(context).size.width - 100,
@@ -66,7 +112,10 @@ class _LoginEmailState extends State<LoginEmail> {
                 color: Color(0xFFF0F0F0),
                 child: SizedBox(
                   child: TextField(
-                  decoration: InputDecoration(
+                    onChanged: (value){
+                      password = value;
+                    },
+                    decoration: InputDecoration(
                       filled: true,
                       hintText: "Contraseña",
                       fillColor: Color(0xFFF0F0F0),
@@ -95,7 +144,41 @@ class _LoginEmailState extends State<LoginEmail> {
               )
             ),
             SizedBox(height: 50),
-            LoginButton()
+            SizedBox(
+              width: MediaQuery.of(context).size.width - 100,
+              height: 50,
+              child: TextButton(
+                onPressed: () async{
+                  try{
+                    await signInWithEmailAndPassword(email: email, password: password);
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SearchScreen()));
+                  }catch(e){
+                    Fluttertoast.showToast(msg: e.toString(), backgroundColor: Colors.red, textColor: Colors.white);
+                  }
+                },
+                style: ButtonStyle(
+                  backgroundColor:  MaterialStateProperty.all(Color(0xFFEB7C25)),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'ENTRAR',
+                      style: TextStyle(
+                        color: Color(0xFFFFFFFF),
+                        fontSize: 18,
+                        fontWeight: FontWeight.w900
+                      ),
+                    ),
+                  ],
+                )
+              ),
+            )
           ],
         ),
       )

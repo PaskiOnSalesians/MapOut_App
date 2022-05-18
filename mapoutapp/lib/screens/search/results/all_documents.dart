@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:mapoutapp/screens/activity_screen/activity_screen.dart';
 import 'package:mapoutapp/screens/search/search.dart';
 import 'package:mapoutapp/utils/constants/activity_details.dart';
 import 'package:mapoutapp/utils/constants/selected_preferences.dart';
@@ -129,7 +130,7 @@ class _AllDocumentsState extends State<AllDocuments> {
                                 // Getting data for showing the next window
                                 ActivityDetails.idActivity = doc.id.toString();
                                 
-                                //Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ActivityDetailsScreen()));
+                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ActivityDetailsScreen()));
                               },
                             ),
                           );

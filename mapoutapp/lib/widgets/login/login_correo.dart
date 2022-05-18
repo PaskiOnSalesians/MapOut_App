@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:mapoutapp/screens/search/search.dart';
+import 'package:mapoutapp/screens/login-register/login_email.dart';
 
 class LoginCorreo extends StatelessWidget {
   const LoginCorreo({
@@ -14,7 +14,7 @@ class LoginCorreo extends StatelessWidget {
       width: MediaQuery.of(context).size.width - 125,
       child: TextButton(
         onPressed: (){
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => SearchScreen()));
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginEmail()));
         },
         style: ButtonStyle(
           backgroundColor:  MaterialStateProperty.all(Color(0xFFF0F0F0)),
