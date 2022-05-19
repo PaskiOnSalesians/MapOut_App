@@ -1,12 +1,15 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_literals_to_create_immutables, prefer_const_constructors
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mapoutapp/screens/login-register/login.dart';
 import 'package:mapoutapp/screens/search/search.dart';
+import 'package:mapoutapp/utils/constants/login_type.dart';
 import 'package:mapoutapp/widgets/others/logo_app.dart';
 import 'package:mapoutapp/widgets/others/logo_separator.dart';
+import 'package:mapoutapp/widgets/register/global/global_variables.dart';
 
 class LoginEmail extends StatefulWidget {
   const LoginEmail({ Key? key }) : super(key: key);
@@ -17,6 +20,8 @@ class LoginEmail extends StatefulWidget {
 
 class _LoginEmailState extends State<LoginEmail> {
   bool _isObscure = true;
+
+  final db = FirebaseFirestore.instance;
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   late String email, password;
@@ -151,6 +156,17 @@ class _LoginEmailState extends State<LoginEmail> {
                 onPressed: () async{
                   try{
                     await signInWithEmailAndPassword(email: email, password: password);
+
+                    QuerySnapshot snapshot = await FirebaseFirestore.instance.collection('users').get();
+
+                    for (var f in snapshot.docs) {
+                      if(f['email'] == email){
+                        Globals.fullname = f['fullname'].toString();
+                        Globals.profile_pic = f['profile_pic'].toString();
+                        LoginType.accessType = "Email";
+                      }
+                    }
+
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SearchScreen()));
                   }catch(e){
                     Fluttertoast.showToast(msg: e.toString(), backgroundColor: Colors.red, textColor: Colors.white);

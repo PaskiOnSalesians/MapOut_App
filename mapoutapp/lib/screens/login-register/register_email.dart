@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mapoutapp/screens/login-register/login.dart';
 import 'package:mapoutapp/screens/search/search.dart';
+import 'package:mapoutapp/utils/constants/login_type.dart';
 import 'package:mapoutapp/widgets/others/logo_app.dart';
 import 'package:mapoutapp/widgets/others/logo_separator_register.dart';
 import 'package:mapoutapp/widgets/register/credentialsFields/email_field.dart';
@@ -141,7 +142,12 @@ class _RegisterEmailState extends State<RegisterEmail> {
                       final newUser = await _auth.createUserWithEmailAndPassword(
                         email: Globals.email, password: Globals.password
                       );
-                      userSetup(Globals.username, Globals.fullname, Globals.email);
+
+                      Globals.profile_pic = "https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png";
+                      
+                      LoginType.accessType = "Email";
+
+                      userSetup(Globals.username, Globals.fullname, Globals.email, Globals.profile_pic);
                       Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SearchScreen()));
                     }
                   } catch (e) {
@@ -177,7 +183,7 @@ class _RegisterEmailState extends State<RegisterEmail> {
     );
   }
 
-  Future<void> userSetup(String displayName, String fullname, String email) async{
+  Future<void> userSetup(String displayName, String fullname, String email, String profilePic) async{
     CollectionReference users = FirebaseFirestore.instance.collection('users');
     FirebaseAuth auth = FirebaseAuth.instance;
     String uid = auth.currentUser!.uid.toString();
@@ -186,7 +192,8 @@ class _RegisterEmailState extends State<RegisterEmail> {
       'displayName': displayName,
       'uid': uid,
       'fullname': fullname,
-      'email': email
+      'email': email,
+      'profile_pic': profilePic
     });
     return;
   }

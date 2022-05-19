@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mapoutapp/screens/settings/settings.dart';
 import 'package:mapoutapp/screens/settings/subsettings/change_password.dart';
+import 'package:mapoutapp/utils/constants/login_type.dart';
 
 class SecurityScreen extends StatefulWidget {
   const SecurityScreen({Key? key}) : super(key: key);
@@ -127,7 +129,14 @@ class _SecurityScreenState extends State<SecurityScreen> {
                       ),
                     ),
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ChangePassword()));
+                      try{
+                        if(LoginType.accessType == "Email"){
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ChangePassword()));  
+                        }
+                      } catch(e){
+                        Fluttertoast.showToast(msg: 'No puedes cambiar la contraseña a traves de una red social.', backgroundColor: Colors.red, textColor: Colors.white);
+                      }
+                      
                     },
                   ),
                 ),

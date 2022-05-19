@@ -8,6 +8,7 @@ import 'package:mapoutapp/screens/search/search.dart';
 import 'package:mapoutapp/screens/settings/settings.dart';
 import 'package:mapoutapp/utils/constants/key_constants.dart';
 import 'package:mapoutapp/utils/constants/login_type.dart';
+import 'package:mapoutapp/widgets/register/global/global_variables.dart';
 
 class ProfileFinalScreen extends StatefulWidget {
   const ProfileFinalScreen({Key? key}) : super(key: key);
@@ -320,6 +321,8 @@ class ProfilePhoto extends StatelessWidget {
       return KeyConstants.googleDisplayName;
     } else if(LoginType.accessType == "Facebook"){
       return KeyConstants.facebookUserDataFields["name"];
+    } else if(LoginType.accessType == "Email"){
+      return Globals.fullname;
     }
     return "";
   }
@@ -329,8 +332,9 @@ class ProfilePhoto extends StatelessWidget {
       return KeyConstants.googlePhotoUrl;
     } else if(LoginType.accessType == "Facebook"){
       return KeyConstants.facebookUserDataFields["picture.width(200)"];
+    } else{
+      return Globals.profile_pic;
     }
-    return "";
   }
 
   @override

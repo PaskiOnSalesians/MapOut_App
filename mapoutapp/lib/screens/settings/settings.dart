@@ -1,9 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mapoutapp/screens/login-register/login.dart';
 import 'package:mapoutapp/screens/profile/profile_definitivo.dart';
 import 'package:mapoutapp/screens/settings/subsettings/help.dart';
 import 'package:mapoutapp/screens/settings/subsettings/notifications.dart';
 import 'package:mapoutapp/screens/settings/subsettings/security.dart';
+import 'package:mapoutapp/utils/constants/login_type.dart';
 import 'package:mapoutapp/widgets/others/separator_section.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -14,6 +17,17 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+
+  Future<void> _signOut() async{
+    await _auth.signOut();
+  }
+
+  Future<void> _signOutGoogle() async{
+    await _googleSignIn.signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -193,7 +207,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
               ),
               onTap: (){
-                //Provider.of<LoginState>(context).logout();
+                if(LoginType.accessType == "Google"){
+                  _signOutGoogle();
+                } else{
+                  _signOut();
+                }
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Login()));
               },
             ),
